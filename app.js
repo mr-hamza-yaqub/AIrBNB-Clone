@@ -12,13 +12,10 @@ const ExpressError = require("./utils/ExpressError.js");
 //Established Connection:
 // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const AtlasURL = process.env.ATLASDB_URL;
-//Requiring Listing Routes
-const listingsRouter = require("./routes/listing.js");
-const reviewsRouter = require("./routes/review.js");
-const userRouter = require("./routes/user.js");
 
 //Requiring session
 const session = require("express-session");
+// Store Session INformation in MongoDb Bcz Local Storage is not Preferable in Production Phase
 const MongoStore = require("connect-mongo");
 //Requiring flash
 const flash = require("connect-flash");
@@ -98,7 +95,6 @@ app.use((req, res, next) => {
 //Routes used here
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
-app.use("/", userRouter);
 
 //To Check Error Handler Wroking if PAge is Not Found and we REquesting to any page which is not exist then page not will displayed in web server
 app.use("*", (req, res, next) => {
