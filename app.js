@@ -9,6 +9,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
+
 //Established Connection:
 // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const AtlasURL = process.env.ATLASDB_URL;
@@ -23,6 +24,10 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const { route } = require("./routes/listing.js");
+const listingsRouter = require("./routes/listing.js");
+const reviewsRouter = require("./routes/review.js");
+
 main()
   .then(() => {
     console.log("Connected TO DB");
